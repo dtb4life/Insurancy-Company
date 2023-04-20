@@ -2,17 +2,24 @@
 //import 'agent_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:device_preview/device_preview.dart';
 
-void main() => runApp(MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: InsuranceApp(),
-    ));
+void main() => runApp(
+      DevicePreview(
+        builder: (context) => MaterialApp(
+          locale: DevicePreview.locale(context),
+          builder: DevicePreview.appBuilder,
+          debugShowCheckedModeBanner: false,
+          home: InsuranceApp(),
+        ),
+      ),
+    );
 
 class InsuranceApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.purple[200],
       appBar: AppBar(
         backgroundColor: Colors.blue[800],
         title: Text('Страховая фирма'),
@@ -22,7 +29,6 @@ class InsuranceApp extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-
           Expanded(
             flex: 3,
             child: Container(
@@ -36,15 +42,18 @@ class InsuranceApp extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                 
                   SizedBox(height: 20),
                   CupertinoButton.filled(
-                    onPressed: () {},
+                    onPressed: () {
+                      //TODO
+                    },
                     child: Text('Войти как клиент'),
                   ),
                   SizedBox(height: 10),
                   CupertinoButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      //TODO
+                    },
                     child: Text('Войти как агент'),
                   ),
                 ],
