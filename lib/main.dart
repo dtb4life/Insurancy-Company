@@ -7,6 +7,7 @@ import 'package:device_preview/device_preview.dart';
 void main() => runApp(
       DevicePreview(
         builder: (context) => MaterialApp(
+          useInheritedMediaQuery: true,
           locale: DevicePreview.locale(context),
           builder: DevicePreview.appBuilder,
           debugShowCheckedModeBanner: false,
