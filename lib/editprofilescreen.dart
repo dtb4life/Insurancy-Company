@@ -25,7 +25,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   late String _phoneNumber;
   late DateTime _dateOfBirth;
   late String _address;
-
+  late int _salary;
  
   @override
   void initState() {
@@ -37,6 +37,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _phoneNumber = widget.client.phoneNumber;
     _dateOfBirth = widget.client.dateOfBirth;
     _address = widget.client.address;
+    _salary = widget.client.salary;
   }
 
   void saveChanges() {
@@ -46,7 +47,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       _age != null &&
       _phoneNumber != null &&
       _dateOfBirth != null &&
-      _address != null) {
+      _address != null && _salary != null) {
     setState(() {
       widget.client.firstName = _firstName!;
       widget.client.lastName = _lastName!;
@@ -55,6 +56,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       widget.client.phoneNumber = _phoneNumber!;
       widget.client.dateOfBirth = _dateOfBirth!;
       widget.client.address = _address!;
+      widget.client.salary = _salary!;
     });
 
   }
@@ -68,7 +70,7 @@ void _checkChangesAndSave() {
       _age != widget.client.age ||
       _phoneNumber != widget.client.phoneNumber ||
       _dateOfBirth != widget.client.dateOfBirth ||
-      _address != widget.client.address) {
+      _address != widget.client.address || _salary != widget.client.salary) {
     showDialog(
       context: context,
       builder: (context) {
