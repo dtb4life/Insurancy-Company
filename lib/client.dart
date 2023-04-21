@@ -15,6 +15,7 @@ class Client {
   List<InsuranceContract> insuranceContracts;
   bool isClientAuthenticated = false;
   late EditProfileScreen ed;
+  int salary;
 
   Client({
     required this.id,
@@ -28,6 +29,7 @@ class Client {
     required this.insuranceRequests,
     required this.insuranceContracts,
     required this.isClientAuthenticated,
+    required this.salary,
   });
 
 
@@ -64,6 +66,7 @@ void updateProfile(Client editedClient) {
     phoneNumber = editedClient.phoneNumber;
     dateOfBirth = editedClient.dateOfBirth;
     address = editedClient.address;
+    salary = editedClient.salary;
   }
 
 
@@ -83,6 +86,7 @@ void updateProfile(Client editedClient) {
     String? phoneNumber,
     DateTime? dateOfBirth,
     String? address,
+    int? salary,
   }) {
     if (firstName != null) {
       this.firstName = firstName;
@@ -104,6 +108,9 @@ void updateProfile(Client editedClient) {
     }
     if (address != null) {
       this.address = address;
+    }
+    if (salary != null) {
+      this.salary = salary;
     }
   }
 
