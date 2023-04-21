@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'editprofilescreen.dart';
 import 'interface.dart';
 
 class Client {
@@ -13,6 +14,7 @@ class Client {
   List<InsuranceRequest> insuranceRequests;
   List<InsuranceContract> insuranceContracts;
   bool isClientAuthenticated = false;
+  late EditProfileScreen ed;
 
   Client({
     required this.id,
@@ -36,6 +38,33 @@ void authentication() {
 
 }
 
+
+
+void viewProfile(BuildContext context, Client client) async {
+  Client? editedClient = await Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => EditProfileScreen(
+        client: client,
+        onProfileUpdated: (editedClient) {
+          ed.onProfileUpdated(editedClient); // вызываем метод в классе Client
+        },
+      ),
+    ),
+  );
+}
+
+
+
+void updateProfile(Client editedClient) {
+    firstName = editedClient.firstName;
+    lastName = editedClient.lastName;
+    email = editedClient.email;
+    age = editedClient.age;
+    phoneNumber = editedClient.phoneNumber;
+    dateOfBirth = editedClient.dateOfBirth;
+    address = editedClient.address;
+  }
 
 
   // Подача заявки на страховку

@@ -75,19 +75,11 @@ class InsuranceApp extends StatelessWidget {
                                       ),
                                     ),
                                     ListTile(
-                                      leading: Icon(Icons.person),
-                                      title: Text('Профиль'),
-                                      onTap: () {
-                                        // Отобразить страницу профиля клиента
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                    ListTile(
                                       leading: Icon(Icons.edit),
                                       title: Text('Редактировать профиль'),
                                       onTap: () {
-                                        // Отобразить страницу редактирования профиля клиента
-                                        Navigator.pop(context);
+                                        client.viewProfile(context, client);
+                                       // Navigator.pop(context);
                                       },
                                     ),
                                     ListTile(
