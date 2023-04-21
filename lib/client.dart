@@ -12,7 +12,7 @@ class Client {
   String address;
   List<InsuranceRequest> insuranceRequests;
   List<InsuranceContract> insuranceContracts;
-  bool _isClientAuthenticated = false;
+  bool isClientAuthenticated = false;
 
   Client({
     required this.id,
@@ -25,14 +25,15 @@ class Client {
     required this.address,
     required this.insuranceRequests,
     required this.insuranceContracts,
+    required this.isClientAuthenticated,
   });
 
-  get isClientAuthenticated => null;
 
 void authentication() {
-  _isClientAuthenticated = true;
-  print(_isClientAuthenticated);
   
+  print(isClientAuthenticated);
+
+
 }
 
 

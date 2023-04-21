@@ -12,6 +12,7 @@ class InsuranceApp extends StatelessWidget {
         title: Text('Страховая фирма'),
         centerTitle: true,
       ),
+      
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -45,6 +46,7 @@ class InsuranceApp extends StatelessWidget {
                         address: "160 Juan Tabo Boulevard NE, Albuquerque",
                         insuranceRequests: [],
                         insuranceContracts: [],
+                        isClientAuthenticated: true,
                       );
                       client.authentication();
                       Navigator.push(
@@ -53,11 +55,57 @@ class InsuranceApp extends StatelessWidget {
                           builder: (context) => DefaultTabController(
                                   length: 3,
                                   child: Scaffold(
+                                    
                                     appBar: AppBar(
                                       title: Text('Ф И Р М А'),
                                       centerTitle: true,
                                       backgroundColor: Colors.blue[900],
                                     ),
+                                    drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              DrawerHeader(
+                child: Text(
+                  'Мой профиль',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.blue[800],
+                ),
+              ),
+              ListTile(
+                leading: Icon(Icons.person),
+                title: Text('Профиль'),
+                onTap: () {
+                  // Отобразить страницу профиля клиента
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.edit),
+                title: Text('Редактировать профиль'),
+                onTap: () {
+                  // Отобразить страницу редактирования профиля клиента
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.logout),
+                title: Text('Выйти из системы'),
+                onTap: () {
+                  // Разлогинить клиента и вернуться на главную страницу
+                  //client.logout();
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+          ),
                                     body: Column(
                                       children: [
                                         TabBar(
@@ -97,9 +145,12 @@ class InsuranceApp extends StatelessWidget {
                                       ],
                                     ),
                                   ),
-                                )
+                                  
+                                ),
+                                
               
                         ),
+                        
                       );
                     },
                     child: Text('Войти как клиент'),
