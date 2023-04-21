@@ -96,99 +96,101 @@ void onProfileUpdated(Client editedClient) {
         backgroundColor: Colors.blue[900],
         centerTitle: true,
       ),
-      body: Padding(
-        padding: EdgeInsets.all(18.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Имя'),
-            TextFormField(
-              initialValue: widget.client.firstName,
-              onChanged: (value) {
-                setState(() {
-                  _firstName = value;
-                });
-              },
-            ),
-            
-
-            SizedBox(height: 16.0),
-             Text('Фамилия'),
-            TextFormField(
-              initialValue: widget.client.lastName,
-              onChanged: (value) {
-                setState(() {
-                  _lastName = value;
-                });
-              },
-            ),
-
-            SizedBox(height: 16.0),
-             Text('Эл.адрес'),
-            TextFormField(
-              initialValue: widget.client.email,
-              onChanged: (value) {
-                setState(() {
-                  _email = value;
-                });
-              },
-            ),
-            
-            SizedBox(height: 16.0),
-            Text('Возраст'),
-            TextFormField(
-              initialValue: widget.client.age.toString(),
-              keyboardType: TextInputType.number,
-              onChanged: (value) {
-                setState(() {
-                  _age = int.parse(value);
-                });
-              },
-            ),
-            
-            SizedBox(height: 16.0),
-             Text('Номер телефона'),
-            TextFormField(
-              initialValue: widget.client.phoneNumber,
-              onChanged: (value) {
-                setState(() {
-                  _phoneNumber = value;
-                });
-              },
-            ),
-
-           SizedBox(height: 16.0),
-            Text('Дата рождения'),
-            TextFormField(
-              initialValue: widget.client.dateOfBirth.toString(),
-              onChanged: (value) {
-                setState(() {
-                  _dateOfBirth = DateTime.parse(value);
-                });
-              },
-            ),
-            SizedBox(height: 16.0),
-            Text('Адрес'),
-            TextFormField(
-              initialValue: widget.client.address,
-              onChanged: (value) {
-                setState(() {
-                  _address = value;
-                });
-              },
-            ),
-         
-            
-
-            SizedBox(height: 16.0,),
-            ElevatedButton(
-              onPressed: () {
-                saveChanges();
-                Navigator.pop(context);
-              },
-              child: Text('Сохранить изменения'),
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(18.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Имя'),
+              TextFormField(
+                initialValue: widget.client.firstName,
+                onChanged: (value) {
+                  setState(() {
+                    _firstName = value;
+                  });
+                },
+              ),
+              
+      
+              SizedBox(height: 16.0),
+               Text('Фамилия'),
+              TextFormField(
+                initialValue: widget.client.lastName,
+                onChanged: (value) {
+                  setState(() {
+                    _lastName = value;
+                  });
+                },
+              ),
+      
+              SizedBox(height: 16.0),
+               Text('Эл.адрес'),
+              TextFormField(
+                initialValue: widget.client.email,
+                onChanged: (value) {
+                  setState(() {
+                    _email = value;
+                  });
+                },
+              ),
+              
+              SizedBox(height: 16.0),
+              Text('Возраст'),
+              TextFormField(
+                initialValue: widget.client.age.toString(),
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  setState(() {
+                    _age = int.parse(value);
+                  });
+                },
+              ),
+              
+              SizedBox(height: 16.0),
+               Text('Номер телефона'),
+              TextFormField(
+                initialValue: widget.client.phoneNumber,
+                onChanged: (value) {
+                  setState(() {
+                    _phoneNumber = value;
+                  });
+                },
+              ),
+      
+             SizedBox(height: 16.0),
+              Text('Дата рождения'),
+              TextFormField(
+                initialValue: widget.client.dateOfBirth.toString(),
+                onChanged: (value) {
+                  setState(() {
+                    _dateOfBirth = DateTime.parse(value);
+                  });
+                },
+              ),
+              SizedBox(height: 16.0),
+              Text('Адрес'),
+              TextFormField(
+                initialValue: widget.client.address,
+                onChanged: (value) {
+                  setState(() {
+                    _address = value;
+                  });
+                },
+              ),
+           
+              
+      
+              SizedBox(height: 16.0,),
+              ElevatedButton(
+                onPressed: () {
+                  saveChanges();
+                  Navigator.pop(context);
+                },
+                child: Text('Сохранить изменения'),
+              ),
+            ],
+          ),
         ),
       ),
     );
