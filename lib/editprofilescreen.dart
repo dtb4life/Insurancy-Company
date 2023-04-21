@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:insurancyyyy/client.dart';
 
+import 'interface.dart';
+
 
 class EditProfileScreen extends StatefulWidget {
   final Client client;
@@ -59,17 +61,26 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
 }
 
-void _showChangesSavedDialog() {
+void _checkChangesAndSave() {
+  if (_firstName != widget.client.firstName ||
+      _lastName != widget.client.lastName ||
+      _email != widget.client.email ||
+      _age != widget.client.age ||
+      _phoneNumber != widget.client.phoneNumber ||
+      _dateOfBirth != widget.client.dateOfBirth ||
+      _address != widget.client.address) {
     showDialog(
       context: context,
-      builder: (BuildContext context) {
+      builder: (context) {
         return AlertDialog(
-          title: Text('Изменения сохранены'),
-          content: Text('Изменения Вашего профиля будут рассмотрены, следите за изменениями.'),
+          title: Text('Изменения будут рассмотрены'),
           actions: [
-            TextButton(
+            ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.pop(context);
+                Navigator.pop(context);
+                saveChanges();
+                
               },
               child: Text('OK'),
             ),
@@ -77,7 +88,12 @@ void _showChangesSavedDialog() {
         );
       },
     );
+  } else {
+    saveChanges();
   }
+}
+
+
 
 void onProfileUpdated(Client editedClient) {
   setState(() {
@@ -182,11 +198,12 @@ void onProfileUpdated(Client editedClient) {
               
       
               SizedBox(height: 16.0,),
-              ElevatedButton(
-                onPressed: () {
+             ElevatedButton(
+                /* onPressed: () {
                   saveChanges();
                   Navigator.pop(context);
-                },
+                },*/
+                onPressed: _checkChangesAndSave,
                 child: Text('Сохранить изменения'),
               ),
             ],
