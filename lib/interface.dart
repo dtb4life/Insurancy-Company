@@ -12,7 +12,6 @@ class InsuranceApp extends StatelessWidget {
         title: Text('Страховая фирма'),
         centerTitle: true,
       ),
-      
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -53,104 +52,98 @@ class InsuranceApp extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) => DefaultTabController(
-                                  length: 3,
-                                  child: Scaffold(
-                                    
-                                    appBar: AppBar(
-                                      title: Text('Ф И Р М А'),
-                                      centerTitle: true,
-                                      backgroundColor: Colors.blue[900],
+                            length: 3,
+                            child: Scaffold(
+                              appBar: AppBar(
+                                title: Text('Ф И Р М А'),
+                                centerTitle: true,
+                                backgroundColor: Colors.blue[900],
+                              ),
+                              drawer: Drawer(
+                                child: ListView(
+                                  padding: EdgeInsets.zero,
+                                  children: [
+                                    UserAccountsDrawerHeader(
+                                      accountName: Text(
+                                          '${client.firstName} ${client.lastName}'),
+                                      accountEmail: Text('${client.email}'),
+                                      currentAccountPicture: CircleAvatar(
+                                       backgroundImage: NetworkImage('https://steamuserimages-a.akamaihd.net/ugc/1811021954136903017/7E1974B61B8D02405DFE3FEBFA7527339B3D83BE/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false'),
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Colors.blue[900],
+                                      ),
                                     ),
-                                    drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              DrawerHeader(
-                child: Text(
-                  'Мой профиль',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                  ),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.blue[800],
-                ),
-              ),
-              ListTile(
-                leading: Icon(Icons.person),
-                title: Text('Профиль'),
-                onTap: () {
-                  // Отобразить страницу профиля клиента
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.edit),
-                title: Text('Редактировать профиль'),
-                onTap: () {
-                  // Отобразить страницу редактирования профиля клиента
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.logout),
-                title: Text('Выйти из системы'),
-                onTap: () {
-                  // Разлогинить клиента и вернуться на главную страницу
-                  //client.logout();
-                  Navigator.pop(context);
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          ),
-          ),
-                                    body: Column(
+                                    ListTile(
+                                      leading: Icon(Icons.person),
+                                      title: Text('Профиль'),
+                                      onTap: () {
+                                        // Отобразить страницу профиля клиента
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                    ListTile(
+                                      leading: Icon(Icons.edit),
+                                      title: Text('Редактировать профиль'),
+                                      onTap: () {
+                                        // Отобразить страницу редактирования профиля клиента
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                    ListTile(
+                                      leading: Icon(Icons.logout),
+                                      title: Text('Выйти из системы'),
+                                      onTap: () {
+                                        // Разлогинить клиента и вернуться на главную страницу
+                                        //client.logout();
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              body: Column(
+                                children: [
+                                  TabBar(
+                                    tabs: [
+                                      Tab(
+                                        icon: Icon(
+                                          Icons.document_scanner,
+                                          color: Colors.blue[900],
+                                        ),
+                                      ),
+                                      Tab(
+                                        icon: Icon(
+                                          Icons.send,
+                                          color: Colors.blue[900],
+                                        ),
+                                      ),
+                                      Tab(
+                                        icon: Icon(
+                                          Icons.filter_frames_sharp,
+                                          color: Colors.blue[900],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Expanded(
+                                    child: TabBarView(
                                       children: [
-                                        TabBar(
-                                          tabs: [
-                                            Tab(
-                                              icon: Icon(
-                                                Icons.document_scanner,
-                                                color: Colors.blue[900],
-                                              ),
-                                            ),
-                                            Tab(
-                                              icon: Icon(
-                                                Icons.send,
-                                                color: Colors.blue[900],
-                                              ),
-                                            ),
-                                            Tab(
-                                              icon: Icon(
-                                                Icons.filter_frames_sharp,
-                                                color: Colors.blue[900],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Expanded(
-                                          child: TabBarView(
-                                            children: [
-                                              // Add your first tab's content here
-                                              Container(),
-                                              // Add your second tab's content here
-                                              Container(),
-                                              // Add your third tab's content here
-                                              Container(),
-                                            ],
-                                          ),
-                                        ),
+                                        // Add your first tab's content here
+                                        Container(),
+                                        // Add your second tab's content here
+                                        Container(),
+                                        // Add your third tab's content here
+                                        Container(),
                                       ],
                                     ),
                                   ),
-                                  
-                                ),
-                                
-              
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
-                        
                       );
                     },
                     child: Text('Войти как клиент'),
@@ -169,4 +162,3 @@ class InsuranceApp extends StatelessWidget {
     );
   }
 }
-
