@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:insurancyyyy/tabs/first.dart';
 import 'client.dart';
 
 class InsuranceApp extends StatelessWidget {
@@ -123,7 +124,7 @@ class InsuranceApp extends StatelessWidget {
                                     child: TabBarView(
                                       children: [
                                         // Add your first tab's content here
-                                        Container(),
+                                        FirstTab(),
                                         // Add your second tab's content here
                                         Container(),
                                         // Add your third tab's content here
@@ -153,4 +154,15 @@ class InsuranceApp extends StatelessWidget {
       ),
     );
   }
+}
+
+
+class InsuranceContract {
+  final String title;
+  final String description;
+
+  InsuranceContract({
+    required this.title,
+    required this.description,
+  });
 }
