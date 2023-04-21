@@ -47,6 +47,7 @@ class InsuranceApp extends StatelessWidget {
                         insuranceRequests: [],
                         insuranceContracts: [],
                         isClientAuthenticated: true,
+                        salary: 100000,
                       );
                       client.authentication();
                       Navigator.push(
