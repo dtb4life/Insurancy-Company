@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:animated_radial_menu/animated_radial_menu.dart';
 class InsuranceRequest {
   int id;
   String firstName;
@@ -25,6 +25,30 @@ class Agent {
   String avatarUrl =
       "https://media.vanityfair.com/photos/587ad80e2a677fe11973b503/master/w_2560%2Cc_limit/giancarlo-espositoo.jpg";
 }
+
+class MySearchDelegate extends SearchDelegate{
+  @override
+  Widget? buildLeading(BuildContext context) => IconButton(
+    icon: const Icon(Icons.arrow_back),
+    onPressed: () {},
+  );
+
+  @override
+  List <Widget>? buildActions(BuildContext context) => [
+    IconButton(
+    icon: const Icon(Icons.clear),
+    onPressed: () => close(context, null),
+  ),
+
+  ];
+
+  @override
+  Widget buildResults(BuildContext context) => Container();
+
+  @override
+  Widget buildSuggestions(BuildContext context) => Container();
+}
+
 
 class InsuranceRequestsList extends StatefulWidget {
   @override
@@ -65,7 +89,7 @@ class _InsuranceRequestsListState extends State<InsuranceRequestsList> {
 Agent agent = Agent();
 
 List<InsuranceRequest> filteredRequests = [];
-
+String _searchQuery = '';
 
 
 
@@ -76,9 +100,19 @@ List<InsuranceRequest> filteredRequests = [];
         title: Text('Список заявок'),
         centerTitle: true,
         backgroundColor: Colors.blue[900],
-        
+        actions: [
+        IconButton(
+          icon: Icon(Icons.search),
+          onPressed: () {
+           showSearch(context: context, delegate: MySearchDelegate(),);
+          },
+          
+        ),
+       
+      ],
        
       ),
+      
       
       floatingActionButton: FloatingActionButton(
         onPressed: () {setState(() {
@@ -88,6 +122,8 @@ List<InsuranceRequest> filteredRequests = [];
         child: Icon(Icons.shuffle),
         
       ),
+
+      
       
       drawer: Drawer(
         child: Column(
