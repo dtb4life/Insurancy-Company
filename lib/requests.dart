@@ -30,14 +30,16 @@ class MySearchDelegate extends SearchDelegate{
   @override
   Widget? buildLeading(BuildContext context) => IconButton(
     icon: const Icon(Icons.arrow_back),
-    onPressed: () {},
+    onPressed: () => close(context, null),
   );
 
   @override
   List <Widget>? buildActions(BuildContext context) => [
     IconButton(
     icon: const Icon(Icons.clear),
-    onPressed: () => close(context, null),
+    onPressed: () {
+      query = '';
+    }
   ),
 
   ];
