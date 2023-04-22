@@ -8,8 +8,9 @@ class InsuranceRequest {
   String email;
   String type;
   int salary;
+  String phone;
 
-  InsuranceRequest({required this.id, required this.firstName, required this.lastName, required this.email,required this.type, required this.salary,});
+  InsuranceRequest({required this.id, required this.firstName, required this.lastName, required this.email,required this.type, required this.salary, required this.phone});
 }
 
 class InsuranceRequestsList extends StatefulWidget {
@@ -26,6 +27,7 @@ class _InsuranceRequestsListState extends State<InsuranceRequestsList> {
       email: "johndoe@gmail.com",
       type: "Заявка на автострахование",
       salary: 50000,
+      phone: "+444534565312"
     ),
     InsuranceRequest(
       id: 2,
@@ -34,6 +36,7 @@ class _InsuranceRequestsListState extends State<InsuranceRequestsList> {
       email: "janedoe@gmail.com",
       type: "Заявка на страхование здоровья и жизни",
       salary: 75000,
+      phone: "+44567653432",
     ),
     InsuranceRequest(
       id: 3,
@@ -42,6 +45,7 @@ class _InsuranceRequestsListState extends State<InsuranceRequestsList> {
       email: "bobsmith@gmail.com",
       type: "Заявка на страхование путешествия",
       salary: 40000,
+      phone: "+4466542345"
     ),
   ];
 
@@ -125,6 +129,7 @@ class ClientInfoScreen extends StatelessWidget {
             Text('Email: ${request.email}'),
             Text('Тип страхования: ${request.type}'),
             Text('Зарплата: ${request.salary}'),
+            Text('Номер телефона: ${request.phone}'),
             // Другие поля, если есть
           ],
         ),
