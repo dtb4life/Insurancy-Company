@@ -19,35 +19,43 @@ class InsuranceRequest {
       required this.phone});
 }
 
+class Agent {
+  String firstName = "Gustavo Fring";
+  String email = "losspollos@gmail.com";
+  String avatarUrl =
+      "https://media.vanityfair.com/photos/587ad80e2a677fe11973b503/master/w_2560%2Cc_limit/giancarlo-espositoo.jpg";
+}
+
 class InsuranceRequestsList extends StatefulWidget {
   @override
   _InsuranceRequestsListState createState() => _InsuranceRequestsListState();
 }
 
 class _InsuranceRequestsListState extends State<InsuranceRequestsList> {
+  Agent agent = Agent();
   List<InsuranceRequest> requests = [
     InsuranceRequest(
         id: 1,
-        firstName: "John",
-        lastName: "Doe",
-        email: "johndoe@gmail.com",
+        firstName: "Jessy",
+        lastName: "Pinkman",
+        email: "luv4twenty@gmail.com",
         type: "Заявка на автострахование",
         salary: 50000,
         phone: "+444534565312"),
     InsuranceRequest(
       id: 2,
       firstName: "Jane",
-      lastName: "Doe",
-      email: "janedoe@gmail.com",
+      lastName: "Margolis",
+      email: "jane&jessy@gmail.com",
       type: "Заявка на страхование здоровья и жизни",
       salary: 75000,
       phone: "+44567653432",
     ),
     InsuranceRequest(
         id: 3,
-        firstName: "Bob",
-        lastName: "Smith",
-        email: "bobsmith@gmail.com",
+        firstName: "Mike",
+        lastName: "Ehrmantraut",
+        email: "waltuh@gmail.com",
         type: "Заявка на страхование путешествия",
         salary: 40000,
         phone: "+4466542345"),
@@ -61,56 +69,98 @@ class _InsuranceRequestsListState extends State<InsuranceRequestsList> {
         centerTitle: true,
         backgroundColor: Colors.blue[900],
       ),
-      body: ListView.builder(
-        itemCount: requests.length,
-        itemBuilder: (BuildContext context, int index) {
-          InsuranceRequest request = requests[index];
-          return Card(
-              child: ListTile(
-            title: Text(
-                '${request.type} от ${request.firstName} ${request.lastName}'),
-            subtitle: Text('Зарплата клиента: ${request.salary}'),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.thumb_up),
-                  color: Colors.green,
-                  onPressed: () {
-                    // Обработчик нажатия на кнопку "Одобрить"\
-                    ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Text('Заявка одобрена. Свяжитесь с клиентом.'), backgroundColor: Colors.green,
-    ),
-  );
-                    setState(() {
-                      requests.removeAt(index);
-                    });
-                  },
-                ),
-                IconButton(
-                  icon: Icon(Icons.thumb_down),
-                  color: Colors.red,
-                  onPressed: () {
-                    // Обработчик нажатия на кнопку "Отклонить"
-                    setState(() {
-                      requests.removeAt(index);
-                    });
-                  },
-                ),
-              ],
+      drawer: Drawer(
+        child: Column(
+          children: [
+            UserAccountsDrawerHeader(
+              accountName: Text(
+                agent.firstName,
+              ),
+              accountEmail: Text(agent.email),
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: NetworkImage(agent.avatarUrl),
+              ),
             ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ClientInfoScreen(request: request),
-                ),
-              );
-            },
-          ));
-        },
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('Выйти из системы'),
+              onTap: () {
+                // Разлогинить клиента и вернуться на главную страницу
+                //client.logout();
+                Navigator.pop(context);
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
+      body: requests.isEmpty
+          ? Center(
+              child: Text('Заявок нет.'),
+            )
+          : ListView.builder(
+              itemCount: requests.length,
+              itemBuilder: (BuildContext context, int index) {
+                InsuranceRequest request = requests[index];
+                return Card(
+                    child: ListTile(
+                  title: Text(
+                      '${request.type} от ${request.firstName} ${request.lastName}'),
+                  subtitle: Text('Зарплата клиента: ${request.salary}'),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.thumb_up),
+                        color: Colors.green,
+                        onPressed: () {
+                          // Обработчик нажатия на кнопку "Одобрить"
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                  'Заявка одобрена. Свяжитесь с клиентом.'),
+                              backgroundColor: Colors.green,
+                              duration: Duration(seconds: 1),
+    behavior: SnackBarBehavior.floating,
+                            ),
+                          );
+                          setState(() {
+                            requests.removeAt(index);
+                          });
+                        },
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.thumb_down),
+                        color: Colors.red,
+                        onPressed: () {
+                          // Обработчик нажатия на кнопку "Отклонить"
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Заявка отклонена.'),
+                              backgroundColor: Colors.red,
+                              duration: Duration(seconds: 1),
+    behavior: SnackBarBehavior.floating,
+                            ),
+                          );
+                          setState(() {
+                            requests.removeAt(index);
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ClientInfoScreen(request: request),
+                      ),
+                    );
+                  },
+                ));
+              },
+            ),
     );
   }
 }
@@ -193,41 +243,6 @@ class ClientInfoScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              // Действие при нажатии на кнопку "Одобрить"
-              Navigator.pop(context, true);
-              ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Text('Заявка одобрена. Свяжитесь с клиентом.'), backgroundColor: Colors.green,
-    ),
-  );
-            },
-            style: ElevatedButton.styleFrom(
-        primary: Colors.green,
-      ),
-            child: Text('Одобрить'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              // Действие при нажатии на кнопку "Отклонить"
-              Navigator.pop(context, false);
-              ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Text('Заявка отклонена.'), backgroundColor: Colors.red,
-    ),
-  );
-            },
-            style: ElevatedButton.styleFrom(
-        primary: Colors.red,
-      ),
-            child: Text('Отклонить'),
-          ),
-        ],
       ),
     );
   }
