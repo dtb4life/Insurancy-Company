@@ -52,7 +52,25 @@ class MySearchDelegate extends SearchDelegate{
   Widget buildResults(BuildContext context) => Container();
 
   @override
-  Widget buildSuggestions(BuildContext context) => Container();
+  Widget buildSuggestions(BuildContext context) {
+    List<String> suggestions = [
+      'Автострахование',
+      'Страхование здоровья и жизни',
+      'Страхование путешествия',
+    ];
+
+    return ListView.builder(
+      itemCount: suggestions.length,
+      itemBuilder: (context, index){
+        final suggestion = suggestions[index];
+
+        return ListTile(
+          title: Text(suggestion),
+          onTap: () {},
+        );
+      },
+      );
+  }
 }
 
 
