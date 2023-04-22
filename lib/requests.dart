@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class InsuranceRequest {
   int id;
   String firstName;
@@ -10,7 +9,14 @@ class InsuranceRequest {
   int salary;
   String phone;
 
-  InsuranceRequest({required this.id, required this.firstName, required this.lastName, required this.email,required this.type, required this.salary, required this.phone});
+  InsuranceRequest(
+      {required this.id,
+      required this.firstName,
+      required this.lastName,
+      required this.email,
+      required this.type,
+      required this.salary,
+      required this.phone});
 }
 
 class InsuranceRequestsList extends StatefulWidget {
@@ -21,14 +27,13 @@ class InsuranceRequestsList extends StatefulWidget {
 class _InsuranceRequestsListState extends State<InsuranceRequestsList> {
   List<InsuranceRequest> requests = [
     InsuranceRequest(
-      id: 1,
-      firstName: "John",
-      lastName: "Doe",
-      email: "johndoe@gmail.com",
-      type: "Заявка на автострахование",
-      salary: 50000,
-      phone: "+444534565312"
-    ),
+        id: 1,
+        firstName: "John",
+        lastName: "Doe",
+        email: "johndoe@gmail.com",
+        type: "Заявка на автострахование",
+        salary: 50000,
+        phone: "+444534565312"),
     InsuranceRequest(
       id: 2,
       firstName: "Jane",
@@ -39,14 +44,13 @@ class _InsuranceRequestsListState extends State<InsuranceRequestsList> {
       phone: "+44567653432",
     ),
     InsuranceRequest(
-      id: 3,
-      firstName: "Bob",
-      lastName: "Smith",
-      email: "bobsmith@gmail.com",
-      type: "Заявка на страхование путешествия",
-      salary: 40000,
-      phone: "+4466542345"
-    ),
+        id: 3,
+        firstName: "Bob",
+        lastName: "Smith",
+        email: "bobsmith@gmail.com",
+        type: "Заявка на страхование путешествия",
+        salary: 40000,
+        phone: "+4466542345"),
   ];
 
   @override
@@ -62,45 +66,49 @@ class _InsuranceRequestsListState extends State<InsuranceRequestsList> {
         itemBuilder: (BuildContext context, int index) {
           InsuranceRequest request = requests[index];
           return Card(
-           child: ListTile(
-  title: Text('${request.type} от ${request.firstName} ${request.lastName}'),
-  subtitle: Text('Зарплата клиента: ${request.salary}'),
-  trailing: Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      IconButton(
-        icon: Icon(Icons.thumb_up),
-        color: Colors.green,
-        onPressed: () {
-          // Обработчик нажатия на кнопку "Одобрить"
-          setState(() {
-            requests.removeAt(index);
-          });
-        },
-      ),
-      IconButton(
-        icon: Icon(Icons.thumb_down),
-        color: Colors.red,
-        onPressed: () {
-          // Обработчик нажатия на кнопку "Отклонить"
-          setState(() {
-            requests.removeAt(index);
-          });
-        },
-      ),
-    ],
-  ),
-  onTap: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ClientInfoScreen(request: request),
-      ),
-    );
-  },
-)
-
-          );
+              child: ListTile(
+            title: Text(
+                '${request.type} от ${request.firstName} ${request.lastName}'),
+            subtitle: Text('Зарплата клиента: ${request.salary}'),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: Icon(Icons.thumb_up),
+                  color: Colors.green,
+                  onPressed: () {
+                    // Обработчик нажатия на кнопку "Одобрить"\
+                    ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text('Заявка одобрена. Свяжитесь с клиентом.'), backgroundColor: Colors.green,
+    ),
+  );
+                    setState(() {
+                      requests.removeAt(index);
+                    });
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.thumb_down),
+                  color: Colors.red,
+                  onPressed: () {
+                    // Обработчик нажатия на кнопку "Отклонить"
+                    setState(() {
+                      requests.removeAt(index);
+                    });
+                  },
+                ),
+              ],
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ClientInfoScreen(request: request),
+                ),
+              );
+            },
+          ));
         },
       ),
     );
@@ -124,15 +132,102 @@ class ClientInfoScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Имя: ${request.firstName}'),
-            Text('Фамилия: ${request.lastName}'),
-            Text('Email: ${request.email}'),
-            Text('Тип страхования: ${request.type}'),
-            Text('Зарплата: ${request.salary}'),
-            Text('Номер телефона: ${request.phone}'),
-            // Другие поля, если есть
+            Text(
+              'Контактная информация',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18.0,
+              ),
+            ),
+            Table(
+              columnWidths: {
+                0: FlexColumnWidth(3),
+                1: FlexColumnWidth(5),
+              },
+              children: [
+                TableRow(
+                  children: [
+                    Text('Имя'),
+                    Text(request.firstName),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Text('Фамилия'),
+                    Text(request.lastName),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Text('Email'),
+                    Text(request.email),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Text('Номер телефона'),
+                    Text(request.phone),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: 16.0),
+            Text(
+              'Страхование',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18.0,
+              ),
+            ),
+            Card(
+              child: ListTile(
+                title: Text('Тип страхования'),
+                subtitle: Text(request.type),
+              ),
+            ),
+            Card(
+              child: ListTile(
+                title: Text('Зарплата'),
+                subtitle: Text(request.salary.toString()),
+              ),
+            ),
           ],
         ),
+      ),
+      bottomNavigationBar: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              // Действие при нажатии на кнопку "Одобрить"
+              Navigator.pop(context, true);
+              ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text('Заявка одобрена. Свяжитесь с клиентом.'), backgroundColor: Colors.green,
+    ),
+  );
+            },
+            style: ElevatedButton.styleFrom(
+        primary: Colors.green,
+      ),
+            child: Text('Одобрить'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              // Действие при нажатии на кнопку "Отклонить"
+              Navigator.pop(context, false);
+              ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text('Заявка отклонена.'), backgroundColor: Colors.red,
+    ),
+  );
+            },
+            style: ElevatedButton.styleFrom(
+        primary: Colors.red,
+      ),
+            child: Text('Отклонить'),
+          ),
+        ],
       ),
     );
   }
