@@ -32,7 +32,8 @@ class InsuranceRequestsList extends StatefulWidget {
 }
 
 class _InsuranceRequestsListState extends State<InsuranceRequestsList> {
-  Agent agent = Agent();
+  
+
   List<InsuranceRequest> requests = [
     InsuranceRequest(
         id: 1,
@@ -61,6 +62,13 @@ class _InsuranceRequestsListState extends State<InsuranceRequestsList> {
         phone: "+4466542345"),
   ];
 
+Agent agent = Agent();
+
+List<InsuranceRequest> filteredRequests = [];
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,10 +76,23 @@ class _InsuranceRequestsListState extends State<InsuranceRequestsList> {
         title: Text('Список заявок'),
         centerTitle: true,
         backgroundColor: Colors.blue[900],
+        
+       
       ),
+      
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {setState(() {
+      requests.shuffle();
+    });},
+        
+        child: Icon(Icons.shuffle),
+        
+      ),
+      
       drawer: Drawer(
         child: Column(
           children: [
+         
             UserAccountsDrawerHeader(
               accountName: Text(
                 agent.firstName,
@@ -110,6 +131,7 @@ class _InsuranceRequestsListState extends State<InsuranceRequestsList> {
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      
                       IconButton(
                         icon: Icon(Icons.thumb_up),
                         color: Colors.green,
@@ -121,7 +143,7 @@ class _InsuranceRequestsListState extends State<InsuranceRequestsList> {
                                   'Заявка одобрена. Свяжитесь с клиентом.'),
                               backgroundColor: Colors.green,
                               duration: Duration(seconds: 1),
-    behavior: SnackBarBehavior.floating,
+                              behavior: SnackBarBehavior.floating,
                             ),
                           );
                           setState(() {
@@ -129,6 +151,7 @@ class _InsuranceRequestsListState extends State<InsuranceRequestsList> {
                           });
                         },
                       ),
+                      
                       IconButton(
                         icon: Icon(Icons.thumb_down),
                         color: Colors.red,
@@ -139,7 +162,7 @@ class _InsuranceRequestsListState extends State<InsuranceRequestsList> {
                               content: Text('Заявка отклонена.'),
                               backgroundColor: Colors.red,
                               duration: Duration(seconds: 1),
-    behavior: SnackBarBehavior.floating,
+                              behavior: SnackBarBehavior.floating,
                             ),
                           );
                           setState(() {
