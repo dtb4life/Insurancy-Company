@@ -38,7 +38,11 @@ class MySearchDelegate extends SearchDelegate{
     IconButton(
     icon: const Icon(Icons.clear),
     onPressed: () {
+      if(query.isEmpty){
+        close(context, null);
+      }else{
       query = '';
+      }
     }
   ),
 
