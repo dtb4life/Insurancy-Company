@@ -76,6 +76,7 @@ void _checkChangesAndSave() {
       builder: (context) {
         return AlertDialog(
           title: Text('Изменения будут рассмотрены'),
+          content: Text('Ожидайте обратной связи.'),
           actions: [
             ElevatedButton(
               onPressed: () {
@@ -84,7 +85,9 @@ void _checkChangesAndSave() {
                 saveChanges();
                 
               },
-              child: Text('OK'),
+              child: Text('OK') ,
+              
+
             ),
           ],
         );
