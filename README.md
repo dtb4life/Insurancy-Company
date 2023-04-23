@@ -1,6 +1,6 @@
 # Insurancy Company Flutter app
 
-![изображение](https://user-images.githubusercontent.com/123462736/233844853-74de8a0d-dc29-4a2d-ac9a-9670a7f2fbe7.png)
+
 ![изображение](https://user-images.githubusercontent.com/123462736/233844907-948eb8a8-aa0a-4d9e-8820-0719c7ed63db.png)
 
 Client:
