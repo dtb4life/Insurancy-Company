@@ -1,9 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.insurancyyyy">
    <application
-        android:label="insurancyyyy"
+        android:label="Страховая фирма"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver"
+              android:exported="false">   
+    </receiver> 
         <activity
             android:name=".MainActivity"
             android:exported="true"
