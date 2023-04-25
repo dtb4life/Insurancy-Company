@@ -17,6 +17,7 @@ Client:
 
 
 Agent:
+![изображение](https://user-images.githubusercontent.com/123462736/234368731-591c99bb-9a76-484b-b32e-9e1c761e8dee.png)
 ![изображение](https://user-images.githubusercontent.com/123462736/234054858-27acde50-f85a-4408-ac26-aba7ec00f150.png)
 ![изображение](https://user-images.githubusercontent.com/123462736/234054905-37685782-5a42-43d9-b2a2-dfe6ae43849b.png)
 ![изображение](https://user-images.githubusercontent.com/123462736/234055011-af20787c-680d-4b63-9ee4-655943a1c90e.png)
