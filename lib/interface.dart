@@ -171,11 +171,9 @@ class InsuranceApp extends StatelessWidget {
                                     Expanded(
                                       child: TabBarView(
                                         children: [
-                                          // Add your first tab's content here
+                                          
                                           FirstTab(),
-                                          // Add your second tab's content here
-    
-                                          // Add your third tab's content here
+                       
                                           ThirdTab(),
                                         ],
                                       ),
